@@ -30,7 +30,26 @@ export default defineConfig({
   title: 'FMHY',
   description: meta.description,
   titleTemplate: ':title • freemediaheckyeah',
-  lang: 'en-US',
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en-US'
+    },
+    zh: {
+      label: '简体中文',
+      lang: 'zh-CN',
+      link: '/zh/',
+      description: 'FMHY 中文版',
+      head: [['meta', { property: 'og:locale', content: 'zh_CN' }]],
+      themeConfig: {
+        nav: [
+          { text: '首页', link: '/zh/' },
+          { text: 'English Wiki', link: '/beginners-guide' }
+        ],
+        sidebar: []
+      }
+    }
+  },
   lastUpdated: false,
   cleanUrls: true,
   appearance: true,
@@ -288,6 +307,10 @@ export default defineConfig({
     }
   },
   themeConfig: {
+    // Only the homepage is translated so far. Always link to an existing page
+    // when switching languages instead of constructing missing /zh/ routes.
+    i18nRouting: (_data, _route, targetLocale) =>
+      targetLocale === 'zh' ? '/zh/' : '/',
     search,
     footer: {
       message: `${feedback} (rev: ${commitRef})`,
