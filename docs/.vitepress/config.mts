@@ -40,7 +40,7 @@ export default defineConfig({
       lang: 'zh-CN',
       link: '/zh/',
       description: 'FMHY 中文版',
-      head: [['meta', { name: 'og:locale', content: 'zh_CN' }]],
+      head: [['meta', { property: 'og:locale', content: 'zh_CN' }]],
       themeConfig: {
         nav: [
           { text: '首页', link: '/zh/' },
